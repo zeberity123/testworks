@@ -18,7 +18,7 @@ no_video = []
 ann_list
 i = annotation.xlsx
 filename_list = 2024_NIA_LAB_LAB_REAL_M_A2_AFA_RE_D_00291...
-before_lsit = 34455...
+before_list = 34455...
 after_list = 71156.038...
 '''
 def annotation_to_list(ann_loc_list, ann_list):
@@ -43,7 +43,7 @@ def parse_vids(ann_list):
             vid_file_num = i[1][j][-5:]
             for video_name in video_loc_list:
                 if vid_file_num in video_name:
-                    parse_vid(video_name, j, i[2][j], i[3][j])
+                    parse_vid(video_name, i[2][j], i[3][j])
                     n_of_parsed_img += 1
             
             start_num += 1
@@ -59,7 +59,7 @@ def seconds_to_frame(second):
     return int(float(second) * 0.03)
 
 
-def parse_vid(video_name, row, before_sec, after_sec):
+def parse_vid(video_name, before_sec, after_sec):
     # print(f'video_name: {video_name}, row: {row}, before_sec: {before_sec}, after_sec: {after_sec}')
 
     # 동영상 파일의 경로
