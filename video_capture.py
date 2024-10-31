@@ -64,8 +64,8 @@ def parse_vids(ann_list):
     for i in ann_list:
         start_num = 1
         n_of_files = len(i[1])
-        for j in range(1, n_of_files):
-        # for j in range(1425, 1435):
+        # for j in range(n_of_files-2, n_of_files):
+        for j in range(143, 144):
             print(f'parsing... {start_num}/{n_of_files}')
             vid_file_num = parse_video_num(i[1][j])
 
