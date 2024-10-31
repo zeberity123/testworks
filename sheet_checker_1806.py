@@ -79,16 +79,17 @@ no_dup = list(set(only_num_list))
 
 # x = [] # 처음 등장한 값인지 판별하는 리스트
 no_dup = []
-diffs = [] # 중복된 원소만 넣는 리스트
+dups = [] # 중복된 원소만 넣는 리스트
 
 for i in only_num_list:
     if i not in no_dup: # 처음 등장한 원소
         no_dup.append(i)
     else:
-        if i not in diffs: # 이미 중복 원소로 판정된 경우는 제외
-            diffs.append(i)
+        if i not in dups: # 이미 중복 원소로 판정된 경우는 제외
+            dups.append(i)
 
-print(len(diffs)) # [1, 2] # 2회 이상 등장한 값들만 담긴 리스트
+
+print(len(dups)) # [1, 2] # 2회 이상 등장한 값들만 담긴 리스트
 
 '''
 '''
