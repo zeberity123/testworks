@@ -24,9 +24,16 @@ source_can_list = get_vids_list_source(can_loc_list)
 # source_can_list = ex_json_list
 
 '''
-json_filename
-gps_vss_seconds
-gps_vss_acceleration
+json_data_list[]
+
+string: json_filename
+list: gps_vss_seconds
+list: gps_vss_acceleration
+list: gps_vss_frame
+list: gps_vss_100ms
+list: sudden_actions
+list: bool_sudden_actions
+bool: has_all
 '''
 json_data_list = []
 
@@ -139,12 +146,13 @@ def has_any_to_excel(json_data_list):
     sudden_actions_data['급정지'] = sudden_stops
     sudden_actions_data['급출발'] = sudden_starts
 
-    sudden_actions_data.to_excel('can_to_excel/241104_위험행동.xlsx', index=False)
+    sudden_actions_data.to_excel('can_to_excel/241104_이상운전행동.xlsx', index=False)
 
 
 n_of_can = 0
 e1 = cv2.getTickCount()
-for json_name in source_can_list:
+for json_name in source_can_list[164:165]:
+# for json_name in source_can_list[:1]:
     n_of_can += 1
     # with open(f'{json_root}/{json_name}', 'r') as f:
     with open(json_name, 'r') as f:
@@ -189,7 +197,11 @@ print(f'Total scanned number of can_data: {n_of_can} files')
 print_has_all(json_data_list)
 print_has_any(json_data_list)
 
-has_any_to_excel(json_data_list)
+# has_any_to_excel(json_data_list)
+
+'''
+그래프 및 이상행동 (파일1개)
+'''
 
 json_filename = json_data_list[0][0]
 data_vss = json_data_list[0][1]
@@ -206,9 +218,6 @@ x1 = [i for i in range(len(data_vss))]
 x2 = [i for i in range(len(data_acc))]
 
 
-'''
-급출발
-'''
 sudden_acc = sudden_actions[0]
 sudden_dec = sudden_actions[1]
 sudden_stops = sudden_actions[2]
@@ -226,49 +235,50 @@ for i in sudden_stops:
 for i in sudden_starts:
     print(f'sudden start: {i}')
 
-# print(data_frame)
+print(json_filename)
+print(data_vss_100ms)
+
 '''
 graph
 blue: vss
 green: acc
 '''
+plt.figure(figsize=(13, 7))
+plt.subplot(211)
 
-# plt.figure(figsize=(13, 7))
-# plt.subplot(211)
+plt.title('GPS VSS (1s)', fontsize=16)
+plt.plot(x1, data_vss, linestyle='-', color='blue', linewidth=2)
 
-# plt.title('GPS VSS (1s)', fontsize=16)
-# plt.plot(x1, data_vss, linestyle='-', color='blue', linewidth=2)
+# plt.title('GPS VSS (frame)', fontsize=16)
+# plt.plot(x1, data_frame, linestyle='-', color='blue', linewidth=2)
 
-# # plt.title('GPS VSS (frame)', fontsize=16)
-# # plt.plot(x1, data_frame, linestyle='-', color='blue', linewidth=2)
+# plt.title('GPS VSS (0.1s)', fontsize=16)
+# plt.plot(x1, data_vss_100ms, linestyle='-', color='blue', linewidth=2)
 
-# # plt.title('GPS VSS (0.1s)', fontsize=16)
-# # plt.plot(x1, data_vss_100ms, linestyle='-', color='blue', linewidth=2)
+plt.xlabel('Time (Seconds)', fontsize=14)
+plt.ylabel('km/h', fontsize=14)
 
-# plt.xlabel('Time (Seconds)', fontsize=14)
-# plt.ylabel('km/h', fontsize=14)
+plt.grid(True, linestyle='--', linewidth=0.5)
 
-# plt.grid(True, linestyle='--', linewidth=0.5)
+# plt.xticks([0, 600, 1200, 1800, 2400, 3000, 3600], [0, 20, 40, 60, 80, 100, 120])
+# plt.xticks([0, 200, 400, 600, 800, 1000, 1200], [0, 20, 40, 60, 80, 100, 120])
 
-# # plt.xticks([0, 600, 1200, 1800, 2400, 3000, 3600], [0, 20, 40, 60, 80, 100, 120])
-# # plt.xticks([0, 200, 400, 600, 800, 1000, 1200], [0, 20, 40, 60, 80, 100, 120])
+plt.xticks(fontsize=12)
+plt.yticks(fontsize=12)
+plt.tight_layout()
 
-# plt.xticks(fontsize=12)
-# plt.yticks(fontsize=12)
-# plt.tight_layout()
+plt.subplot(212)
+plt.title('Acceleration', fontsize=16)
+plt.plot(x2, data_acc, linestyle='-', color='green', linewidth=2)
+plt.xlabel('Time (Seconds)', fontsize=14)
+plt.ylabel('km/h', fontsize=14)
 
-# plt.subplot(212)
-# plt.title('Acceleration', fontsize=16)
-# plt.plot(x2, data_acc, linestyle='-', color='green', linewidth=2)
-# plt.xlabel('Time (Seconds)', fontsize=14)
-# plt.ylabel('km/h', fontsize=14)
+plt.grid(True, linestyle='--', linewidth=0.5)
 
-# plt.grid(True, linestyle='--', linewidth=0.5)
+# plt.xticks([0, 600, 1200, 1800, 2400, 3000, 3600], [0, 20, 40, 60, 80, 100, 120])
+# plt.xticks([0, 200, 400, 600, 800, 1000, 1200], [0, 20, 40, 60, 80, 100, 120])
 
-# # plt.xticks([0, 600, 1200, 1800, 2400, 3000, 3600], [0, 20, 40, 60, 80, 100, 120])
-# # plt.xticks([0, 200, 400, 600, 800, 1000, 1200], [0, 20, 40, 60, 80, 100, 120])
-
-# plt.xticks(fontsize=12)
-# plt.yticks(fontsize=12)
-# plt.tight_layout()
-# plt.show()
+plt.xticks(fontsize=12)
+plt.yticks(fontsize=12)
+plt.tight_layout()
+plt.show()
