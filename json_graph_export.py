@@ -5,6 +5,7 @@ import cv2
 
 json_root = '00169'
 # json_root = '00049'
+json_root = '03287'
 ex_json_list = os.listdir(json_root)
 
 # json_root = 'G:/'
@@ -196,6 +197,8 @@ sudden_dec = sudden_actions[1]
 sudden_stops = sudden_actions[2]
 sudden_starts = sudden_actions[3]
 
+print(data_frame)
+
 
 for i in sudden_acc:
     print(f'sudden accceleration: {[i[0], i[1]]}')
@@ -257,4 +260,4 @@ plt.xticks([i*10 for i in range(13)], [i*10 for i in range(13)])
 plt.xticks(fontsize=12)
 plt.yticks(fontsize=12)
 plt.tight_layout()
-plt.show()
+plt.show()  
