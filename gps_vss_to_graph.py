@@ -4,10 +4,10 @@ import os
 import cv2
 import pandas as pd
 
-json_root = 'jsonexample'
+json_root = '00169'
 ex_json_list = os.listdir(json_root)
 
-json_root = 'G:/'
+# json_root = 'G:/'
 can_loc_list = os.listdir(json_root)
 
 def get_vids_list_source(can_loc_list):
@@ -20,8 +20,8 @@ def get_vids_list_source(can_loc_list):
 
     return source_can_list
 
-source_can_list = get_vids_list_source(can_loc_list)
-# source_can_list = ex_json_list
+# source_can_list = get_vids_list_source(can_loc_list)
+source_can_list = can_loc_list
 
 '''
 json_data_list[]
@@ -151,11 +151,11 @@ def has_any_to_excel(json_data_list):
 
 n_of_can = 0
 e1 = cv2.getTickCount()
-for json_name in source_can_list[164:165]:
-# for json_name in source_can_list[:1]:
+# for json_name in source_can_list[164:165]:
+for json_name in source_can_list:
     n_of_can += 1
-    # with open(f'{json_root}/{json_name}', 'r') as f:
-    with open(json_name, 'r') as f:
+    with open(f'{json_root}/{json_name}', 'r') as f:
+    # with open(json_name, 'r') as f:
         data = json.load(f)
 
         frames = data['frames']

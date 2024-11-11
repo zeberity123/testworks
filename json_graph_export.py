@@ -2,26 +2,15 @@ import json
 import matplotlib.pyplot as plt
 import os
 import cv2
-import pandas as pd
 
 json_root = '00169'
-json_root = '00049'
+# json_root = '00049'
 ex_json_list = os.listdir(json_root)
 
 # json_root = 'G:/'
 can_loc_list = os.listdir(json_root)
 
-def get_vids_list_source(can_loc_list):
-    source_can_list = []
-    for i in can_loc_list:
-        if '데이터_' in i[:5]:
-            loc_to_source = f'{json_root}/{i}'
-            for can_json in os.listdir(f'{loc_to_source}/3. CAN'):
-                source_can_list.append(f'{loc_to_source}/3. CAN/{can_json}')
 
-    return source_can_list
-
-# source_can_list = get_vids_list_source(can_loc_list)
 source_can_list = can_loc_list
 
 '''
@@ -122,32 +111,6 @@ def print_has_all(json_data_list):
 def filename_only(filename):
     return filename.split('/')[-1]
 
-def print_has_any(json_data_list):
-    for can_json in json_data_list:
-        print(f'{filename_only(can_json[0])}: {can_json[5]}')
-
-def has_any_to_excel(json_data_list):
-    filenames = []
-    sudden_acc = []
-    sudden_dec = []
-    sudden_stops = []
-    sudden_starts = []
-
-    for can_json in json_data_list:
-        filenames.append(filename_only(can_json[0]))
-        sudden_acc.append(can_json[5][0])
-        sudden_dec.append(can_json[5][1])
-        sudden_stops.append(can_json[5][2])
-        sudden_starts.append(can_json[5][3])
-
-    sudden_actions_data = pd.DataFrame()
-    sudden_actions_data['파일이름'] = filenames
-    sudden_actions_data['급가속'] = sudden_acc
-    sudden_actions_data['급감속'] = sudden_dec
-    sudden_actions_data['급정지'] = sudden_stops
-    sudden_actions_data['급출발'] = sudden_starts
-
-    sudden_actions_data.to_excel('can_to_excel/241104_이상운전행동.xlsx', index=False)
 
 def check_continuous(sudden_actions):
     removed_continuous = []
@@ -158,8 +121,8 @@ def check_continuous(sudden_actions):
         for i in range(1, len(sudden_actions)):
             # print(f'{sudden_actions[i][0] - current_time}')
             if (sudden_actions[i][0] - current_time) >= 0.09 and (sudden_actions[i][0] - current_time) <= 0.11:
-                removed_continuous.pop()
-                removed_continuous.append([sudden_actions[i][0], sudden_actions[i][1]])
+                # removed_continuous.pop()
+                # removed_continuous.append([sudden_actions[i][0], sudden_actions[i][1]])
                 current_time = sudden_actions[i][0]
             else:
                 removed_continuous.append([sudden_actions[i][0], sudden_actions[i][1]])
@@ -190,20 +153,19 @@ for json_name in source_can_list:
 
         gps_vss_100ms = frames_to_100ms(gps_vss_frame)
         
-        gps_vss_acceleration = vss_to_acceleration(gps_vss_100ms)
+        gps_vss_acceleration = vss_to_acceleration(gps_vss_seconds)
         
         has_all = False
         sudden_actions = check_sudden_action(gps_vss_100ms)
+        for i in range(4):
+            sudden_actions[i] = check_continuous(sudden_actions[i])
 
         bool_sudden_actions = ['X', 'X', 'X', 'X']
 
         for i in range(len(sudden_actions)):
             bool_sudden_actions[i] = 'O' if sudden_actions[i] else 'X'
 
-        if sudden_actions[0] and sudden_actions[1] and sudden_actions[2] and sudden_actions[3]:
-            has_all = True
-
-        json_data_list.append([json_name, gps_vss_acceleration, gps_vss_frame, gps_vss_100ms, sudden_actions, bool_sudden_actions, has_all])
+        json_data_list.append([json_name, gps_vss_acceleration, gps_vss_frame, gps_vss_100ms, sudden_actions, bool_sudden_actions])
 
     print(f'scanning... {n_of_can}/{len(source_can_list)}')
 
@@ -213,11 +175,6 @@ Total_time = (e2 - e1)/ cv2.getTickFrequency()
 print(f'Total time taken: {Total_time} seconds')
 print(f'Total scanned number of can_data: {n_of_can} files')
 
-
-print_has_all(json_data_list)
-print_has_any(json_data_list)
-
-# has_any_to_excel(json_data_list)
 
 '''
 그래프 및 이상행동 (파일1개)
@@ -229,29 +186,28 @@ data_frame = json_data_list[0][2]
 data_vss_100ms = json_data_list[0][3]
 sudden_actions = json_data_list[0][4]
 bool_sudden_actions = json_data_list[0][5]
-has_all = json_data_list[0][6]
 
 x1 = [i for i in range(len(data_vss_100ms))]
 x2 = [i for i in range(len(data_acc))]
 
 
-sudden_acc = check_continuous(sudden_actions[0])
-sudden_dec = check_continuous(sudden_actions[1])
-sudden_stops = check_continuous(sudden_actions[2])
-sudden_starts = check_continuous(sudden_actions[3])
+sudden_acc = sudden_actions[0]
+sudden_dec = sudden_actions[1]
+sudden_stops = sudden_actions[2]
+sudden_starts = sudden_actions[3]
 
 
 for i in sudden_acc:
-    print(f'sudden accceleration: {[i[0]-0.5, i[1]]}')
+    print(f'sudden accceleration: {[i[0], i[1]]}')
 
 for i in sudden_dec:
-    print(f'sudden deceleration: {[i[0]-0.5, i[1]]}')
+    print(f'sudden deceleration: {[i[0], i[1]]}')
 
 for i in sudden_stops:
-    print(f'sudden stop: {[i[0]-0.5, i[1]]}')
+    print(f'sudden stop: {[i[0], i[1]]}')
 
 for i in sudden_starts:
-    print(f'sudden start: {[i[0]-0.5, i[1]]}')
+    print(f'sudden start: {[i[0], i[1]]}')
 
 # print(json_filename)
 # print(data_vss_100ms)
@@ -261,34 +217,44 @@ graph
 blue: vss
 green: acc
 '''
-# plt.figure(figsize=(13, 7))
-# plt.subplot(211)
+plt.figure(figsize=(13, 7))
+plt.subplot(211)
 
-# plt.title('GPS VSS (0.1s)', fontsize=16)
-# plt.plot(x1, data_vss_100ms, linestyle='-', color='blue', linewidth=2)
+plt.title('GPS VSS (0.1s)', fontsize=16)
+plt.plot(x1, data_vss_100ms, linestyle='-', color='blue', linewidth=2)
+sudden_action_list = ['sudden_acc ', 'sudden_dec ', 'sudden_stop ', 'sudden_start ']
+for i in range(4):
+    if sudden_actions[i]:
+        for sudden_action in sudden_actions[i]:
+            target_time = int(sudden_action[0]*10)
+            plt.plot(target_time, data_vss_100ms[target_time], marker='o',markerfacecolor='r')
+            plt.text(target_time, data_vss_100ms[target_time], sudden_action_list[i], horizontalalignment='right', verticalalignment='bottom')
 
-# plt.xlabel('Time (Seconds)', fontsize=14)
-# plt.ylabel('km/h', fontsize=14)
+plt.xlabel('Time (Seconds)', fontsize=14)
+plt.ylabel('km/h', fontsize=14)
 
-# plt.grid(True, linestyle='--', linewidth=0.5)
+plt.grid(True, linestyle='--', linewidth=0.5)
 
-# plt.xticks([0, 200, 400, 600, 800, 1000, 1200], [0, 20, 40, 60, 80, 100, 120])
+plt.xticks([i*100 for i in range(13)], [i*10 for i in range(13)])
 
-# plt.xticks(fontsize=12)
-# plt.yticks(fontsize=12)
-# plt.tight_layout()
+plt.xticks(fontsize=12)
+plt.yticks(fontsize=12)
+plt.tight_layout()
 
-# plt.subplot(212)
-# plt.title('Acceleration', fontsize=16)
-# plt.plot(x2, data_acc, linestyle='-', color='green', linewidth=2)
-# plt.xlabel('Time (Seconds)', fontsize=14)
-# plt.ylabel('km/h', fontsize=14)
+plt.subplot(212)
+plt.title('Acceleration', fontsize=16)
+plt.plot(x2, data_acc, linestyle='-', color='green', linewidth=2)
+plt.xlabel(f'sudden_acc:{[i for i in sudden_acc] if sudden_acc else "[None]"}\n' +
+           f'sudden_dec:{[i for i in sudden_dec] if sudden_dec else "[None]"}\n' +
+           f'sudden_stops:{[i for i in sudden_stops] if sudden_stops else "[None]"}\n' +
+           f'sudden_starts:{[i for i in sudden_starts] if sudden_starts else "[None]"}', fontsize=14, loc='left')
+plt.ylabel('km/h', fontsize=14)
 
-# plt.grid(True, linestyle='--', linewidth=0.5)
+plt.grid(True, linestyle='--', linewidth=0.5)
 
-# plt.xticks([0, 200, 400, 600, 800, 1000, 1200], [0, 20, 40, 60, 80, 100, 120])
+plt.xticks([i*10 for i in range(13)], [i*10 for i in range(13)])
 
-# plt.xticks(fontsize=12)
-# plt.yticks(fontsize=12)
-# plt.tight_layout()
-# plt.show()
+plt.xticks(fontsize=12)
+plt.yticks(fontsize=12)
+plt.tight_layout()
+plt.show()
