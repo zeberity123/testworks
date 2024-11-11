@@ -40,11 +40,25 @@ def check_errors(json_data_list):
 
     return has_errors
         
+def createDirectory(directory):
+    try:
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+    except OSError:
+        print("Error: Failed to create the directory.")
+
 def print_error_list(error_json_list):
+    createDirectory('error_list_txt')
+    error_list = []
+    file_name = 'error_list_txt/error_list_txt.txt'
     if error_json_list:
         print(f'\nErrors in: ')
         for json in error_json_list:
             print(f'{json[0][0]}: frameCnt[{json[1][1]}]')
+            error_list.append(f'{json[0][0]}: frameCnt[{json[1][1]}]')
+
+        with open(file_name, 'w+') as file:
+            file.write('\n'.join(error_list))
     else:
         print('No error detected')
 
