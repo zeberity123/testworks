@@ -6,6 +6,7 @@ import cv2
 json_root = '00169'
 # json_root = '00049'
 json_root = '03287'
+json_root = '02946'
 ex_json_list = os.listdir(json_root)
 
 # json_root = 'G:/'
