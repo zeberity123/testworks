@@ -5,13 +5,23 @@ import cv2
 json_root = 'can_to_vss_246'
 ex_json_list = os.listdir(json_root)
 
-json_root = 'can_to_vss_246'
-can_loc_list = os.listdir(json_root)
-
 new_json_root = 'can_to_vss_246/vss_CAN_1111_246건'
 
+json_root = 'can_to_vss_388'
+ex_json_list = os.listdir(json_root)
+
+new_json_root = 'can_to_vss_388/vss_CAN_1112_388건'
 
 source_can_list = ex_json_list
+
+def createDirectory(directory):
+    try:
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+    except OSError:
+        print("Error: Failed to create the directory.")
+
+createDirectory('can_to_vss_388/vss_CAN_1112_388건')
 
 '''
 json_data_list[]
@@ -89,8 +99,8 @@ def check_continuous(sudden_actions):
         for i in range(1, len(sudden_actions)):
             # print(f'{sudden_actions[i][0] - current_time}')
             if (sudden_actions[i][0] - current_time) >= 0.09 and (sudden_actions[i][0] - current_time) <= 0.11:
-                removed_continuous.pop()
-                removed_continuous.append([sudden_actions[i][0], sudden_actions[i][1]])
+                # removed_continuous.pop()
+                # removed_continuous.append([sudden_actions[i][0], sudden_actions[i][1]])
                 current_time = sudden_actions[i][0]
             else:
                 removed_continuous.append([sudden_actions[i][0], sudden_actions[i][1]])
@@ -127,7 +137,7 @@ def can_to_vss(json_data_list):
 
 n_of_can = 0
 e1 = cv2.getTickCount()
-for json_name in source_can_list[:-1]:
+for json_name in source_can_list:
     n_of_can += 1
     with open(f'{json_root}/{json_name}', 'r') as f:
     # with open(json_name, 'r') as f:
