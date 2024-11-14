@@ -286,6 +286,7 @@ def save_graphs(json_data_list):
         plt.tight_layout()
         # plt.show()
         plt.savefig(f'{json_root}/yaw_graphs/yaw_{json_filename[:-5]}.png')
+        plt.close()
 
         print(f'saving graphs... {n_of_can}/{len(json_data_list)}')
     e2 = cv2.getTickCount()

@@ -191,7 +191,8 @@ def save_graphs(json_data_list):
         plt.xticks(fontsize=12)
         plt.yticks(fontsize=12)
         plt.tight_layout()
-        plt.savefig(f'can_graphs/graph_{json_filename[:-5]}.png') 
+        plt.savefig(f'can_graphs/graph_{json_filename[:-5]}.png')
+        plt.close()
 
 
 
