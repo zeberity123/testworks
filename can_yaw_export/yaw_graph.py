@@ -4,6 +4,7 @@ import cv2
 import matplotlib.pyplot as plt
 
 json_root = './'
+# json_root = 'can_yaw_export'
 can_loc_list = []
 
 for i in os.listdir(json_root):
@@ -96,6 +97,15 @@ def frames_to_100ms(yaw_data_degree):
     yaw_degree_100ms = []
     total_100ms = len(yaw_data_degree) // 3
     for i in range(total_100ms):
+        degree_in_100ms = sum(yaw_data_degree[i*3:(i+1)*3])//3
+        yaw_degree_100ms.append(degree_in_100ms)
+
+    return yaw_degree_100ms
+
+def frames_yaw_to_100ms(yaw_data_degree):
+    yaw_degree_100ms = []
+    total_100ms = len(yaw_data_degree) // 3
+    for i in range(total_100ms):
         degree_in_100ms = sum(yaw_data_degree[i*3:(i+1)*3])/3
         yaw_degree_100ms.append(degree_in_100ms)
 
@@ -164,6 +174,7 @@ def check_sudden_action(gps_vss_100ms, yaw_data_degree):
         max_index = ms_1s.index(max(ms_1s))
 
         min_vss_3 = min(ms_3s)
+        max_vss_3 = max(ms_3s)
 
         if min_vss <= 5 and (max_vss - min_vss) >= 10:
             if min_index < max_index:
@@ -184,7 +195,7 @@ def check_sudden_action(gps_vss_100ms, yaw_data_degree):
                 total_rotation.append(delta)
             
             if sum(total_rotation) >= 60.0:
-                sudden_rotation.append([i/10, f'total rotation:{sum(total_rotation):.4f}°'])
+                sudden_rotation.append([i/10, f'Rotation:{sum(total_rotation):.2f}°, VSS:{min_vss_3}~{max_vss_3}'])
 
 
     return [sudden_acc, sudden_dec, sudden_stop, sudden_start, sudden_rotation]
@@ -238,13 +249,15 @@ def save_graphs(json_data_list):
 
         plt.title(f'{json_filename}', fontsize=16)
         plt.plot(x1, data_vss_100ms, linestyle='-', color='blue', linewidth=2)
+
         sudden_action_list = ['sudden_acc ', 'sudden_dec ', 'sudden_stop ', 'sudden_start ', 'sudden_rotation']
+        
         for i in range(len(sudden_action_list)):
             if sudden_actions[i]:
                 for sudden_action in sudden_actions[i]:
-                    target_time = int(sudden_action[0]*10)
-                    plt.plot(target_time, data_vss_100ms[target_time], marker='o',markerfacecolor='r')
-                    plt.text(target_time, data_vss_100ms[target_time], sudden_action_list[i], horizontalalignment='right', verticalalignment='bottom')
+                    target_index = int(sudden_action[0]*10)
+                    plt.plot(target_index, data_vss_100ms[target_index], marker='o',markerfacecolor='r')
+                    plt.text(target_index, data_vss_100ms[target_index], sudden_action_list[i], horizontalalignment='right', verticalalignment='bottom')
 
         plt.xlabel('Time (Seconds)', fontsize=14)
         plt.ylabel('km/h', fontsize=14)
@@ -260,6 +273,14 @@ def save_graphs(json_data_list):
 
         plt.subplot(212)
         plt.plot(x2, yaw_degree_100ms, linestyle='-', color='green', linewidth=2)
+        
+        # only sudden rotation
+        if sudden_rotations:
+            for sudden_action in sudden_rotations:
+                target_index = int(sudden_action[0]*10)
+                plt.plot(target_index, yaw_degree_100ms[target_index], marker='o',markerfacecolor='r')
+                plt.text(target_index, yaw_degree_100ms[target_index], sudden_action_list[4], horizontalalignment='right', verticalalignment='bottom')
+        
         plt.xlabel(f'>sudden_acc:{[i for i in sudden_acc] if sudden_acc else "[None]"}\n' +
                 f'>sudden_dec:{[i for i in sudden_dec] if sudden_dec else "[None]"}\n' +
                 f'>sudden_stops:{[i for i in sudden_stops] if sudden_stops else "[None]"}\n' +
@@ -284,7 +305,7 @@ def save_graphs(json_data_list):
     Total_time = (e4 - e3)/ cv2.getTickFrequency() 
     print(f'Total time taken: {Total_time} seconds')
     print(f'Total saved number of graphs: {n_of_can} files')
-    print(f'Cleaning Memory...')
+    # print(f'Cleaning Memory...')
 
 n_of_can = 0
 e1 = cv2.getTickCount()
@@ -303,7 +324,7 @@ for json_name in can_loc_list:
         yaw_data_raw = yaw_to_list(frames)
         yaw_data_degree = yaw_to_degree(yaw_data_raw)
         yaw_data_degree = degree_delta(yaw_data_degree)
-        yaw_degree_100ms = frames_to_100ms(yaw_data_degree)
+        yaw_degree_100ms = frames_yaw_to_100ms(yaw_data_degree)
 
         sudden_actions = check_sudden_action(gps_vss_100ms, yaw_degree_100ms)
         for i in range(len(sudden_actions)):
