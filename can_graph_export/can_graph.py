@@ -134,14 +134,15 @@ def check_continuous(sudden_actions):
     return []
 
 def save_graphs(json_data_list):
-    createDirectory("can_graphs")
+    target_dir = "can_vss_graphs"
+    createDirectory(f'{json_root}/{target_dir}')
     for data in json_data_list:
         json_filename = data[0]
         data_acc = data[1]
-        data_frame = data[2]
+        # data_frame = data[2]
         data_vss_100ms = data[3]
         sudden_actions = data[4]
-        bool_sudden_actions = data[5]
+        # bool_sudden_actions = data[5]
 
         x1 = [i for i in range(len(data_vss_100ms))]
         x2 = [i for i in range(len(data_acc))]
@@ -191,7 +192,7 @@ def save_graphs(json_data_list):
         plt.xticks(fontsize=12)
         plt.yticks(fontsize=12)
         plt.tight_layout()
-        plt.savefig(f'can_graphs/graph_{json_filename[:-5]}.png')
+        plt.savefig(f'{target_dir}/vss_graph_{json_filename[:-5]}.png')
         plt.close()
 
 

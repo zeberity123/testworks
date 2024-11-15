@@ -2,7 +2,7 @@ import cv2
 import pandas as pd
 import os
 
-ann_folder_name = 'json_10_30'
+ann_folder_name = 'json_11_15'
 source_vids_folder_name = 'G:/'
 
 ann_loc_list = os.listdir(ann_folder_name)
@@ -13,7 +13,7 @@ def get_vids_list_source(video_loc_list):
     source_vids_list_cm = []
 
     for i in video_loc_list:
-        if '데이터_' in i[:5]:
+        if 'DATA_' in i[:5]:
             loc_to_source = f'{source_vids_folder_name}/{i}'
             for dh in os.listdir(f'{loc_to_source}/1. DH'):
                 source_vids_list_dh.append(f'{dh}')
@@ -29,7 +29,7 @@ source_vids_list = get_vids_list_source(video_loc_list)
 for i in source_vids_list:
     print(i)
 
-file_name = 'txt_list/dh_list.txt'
+file_name = 'txt_list/dh_list_11_15.txt'
 
 with open(file_name, 'w+') as file:
     file.write('\n'.join(source_vids_list))

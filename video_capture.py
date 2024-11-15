@@ -107,16 +107,17 @@ def parse_vids(ann_list):
     for i in ann_list:
         start_num = 1
         n_of_files = len(i[1])
-        for j in range(n_of_files):
-        # for j in range(143, 144):
+        # for j in range(n_of_files):
+        for j in range(144, 145):
             print(f'parsing... {start_num}/{n_of_files}')
             vid_file_num = parse_video_num(i[1][j])
-            # print(f'vid_filenum = {vid_file_num}')
+            print(f'vid_filenum = {vid_file_num}')
 
             for video_name in source_vids_list:
                 if vid_file_num in video_name:
                     e2 = cv2.getTickCount()
                     parse_vid(video_name, i[2][j], i[3][j])
+                    print(len(i[2]), len(i[3]), len(i[1]))
                     e3 = cv2.getTickCount()
                     time = (e3 - e2)/ cv2.getTickFrequency()
                     # print(f'Time taken: {time} seconds')
@@ -165,11 +166,11 @@ def parse_vid(video_name, before_sec, after_sec):
         if cnt == 0:
             image_path = f'241115_images/frames/{"frames_cm" if "CM" in video_name else "frames_dh"}/{video_name[:-4]}_Pre.jpg'
             cv2.imwrite(image_path, frame)
-            # print(video_name, second)
+            print(video_name, second)
         else:
             image_path = f'241115_images/frames/{"frames_cm" if "CM" in video_name else "frames_dh"}/{video_name[:-4]}_Post.jpg'
             cv2.imwrite(image_path, frame)
-            # print(video_name, second)
+            print(video_name, second)
         cnt += 1
 
     # 동영상 파일 닫기

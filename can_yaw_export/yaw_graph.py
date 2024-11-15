@@ -218,7 +218,8 @@ def check_continuous(sudden_actions):
     return []
 
 def save_graphs(json_data_list):
-    createDirectory(f'{json_root}/yaw_graphs')
+    target_dir = 'can_yaw_graphs'
+    createDirectory(f'{json_root}/{target_dir}')
     e3 = cv2.getTickCount()
     n_of_can = 0
     for data in json_data_list:
@@ -297,7 +298,7 @@ def save_graphs(json_data_list):
 
         plt.tight_layout()
         # plt.show()
-        plt.savefig(f'{json_root}/yaw_graphs/yaw_{json_filename[:-5]}.png')
+        plt.savefig(f'{json_root}/{target_dir}/yaw_graph_{json_filename[:-5]}.png')
         plt.close()
 
         print(f'saving graphs... {n_of_can}/{len(json_data_list)}')
