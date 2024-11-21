@@ -15,7 +15,7 @@ def second_to_list(frames):
     gps_seconds = []
     frameCnts = []
     for frame in frames:
-        gps_second = frame['aim_micom']['gps_second']
+        gps_second = frame['sys_time']['second']
         gps_seconds.append(int(gps_second))
         frameCnt = frame['frameCnt']
         frameCnts.append(f'"{frameCnt}"')
