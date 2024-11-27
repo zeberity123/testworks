@@ -46,10 +46,12 @@ for json_name in can_list:
         
         if '_PG_' in json_name:
             s_box = [0, 0, 0, 0, 0, 0]
-            for i in range(6):
+            for i in range(5):
                 for token in tokens:
                     if s_action[i] in token:
                         s_box[i] += 1
+            if sum(s_box) == 0:
+                s_box[5] += 1
             pg_json.append([json_name, s_box])
 
             
