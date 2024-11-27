@@ -3,7 +3,7 @@ import os
 import cv2
 import shutil
 
-json_root = '3300_json'
+json_root = 'new_3300_json'
 directoy_name = 'below_50'
 can_list = []
 json_data_list = []
