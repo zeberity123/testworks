@@ -49,18 +49,6 @@ def check_ttv(filename):
     else:
         return new_train_root
 
-# cnt = 0
-# for folder in origin_folders_list:
-#     risky_type_list = os.listdir(f'{files_origin_root}/{folder}')
-#     for file_type in risky_type_list:
-#         type_dest = data_folder_names[file_type]
-#         for filename in os.listdir(f'{files_origin_root}/{folder}/{file_type}'):
-#             dest_train_test_val = check_ttv(filename)
-#             origin_root = f'{files_origin_root}/{folder}/{file_type}'
-#             cnt += 1
-#             print(f'copying...{cnt}/23100     {filename}')
-#             copy_to_dest(filename, origin_root, dest_train_test_val, type_dest)
-
 for img in dh_img_list:
     dest_train_test_val = check_ttv(img)
     copy_to_dest(img, dh_origin_root, dest_train_test_val, '운전자 운전행동 이미지')
