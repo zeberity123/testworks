@@ -1,0 +1,38 @@
+{
+    "dataset": {
+        "title": "2024_NIA_LAB_LAB_PG_F_A3_C2C_PG_D_03090.JSON",
+        "date": "2024.11.04",
+        "time": "D",
+        "weather": "Sunny",
+        "scenario": "Test",
+        "length": "00:02:06"
+    },
+    "Collection_info": {
+        "Car info": "Sedan",
+        "Driver_ID": "000029",
+        "Sex": "F",
+        "Age": "A3",
+        "Driving Experience": "E3",
+        "Traffic": "other"
+    },
+    "Load": {
+        "Load_category": "PG",
+        "Load_Geo": "cross"
+    },
+    "Risky": {
+        "Risky_type": "C2C"
+    },
+    "time": {
+        "Pre_start_time": "00:00:00",
+        "Pre_end_time": "00:00:26",
+        "Post_start_time": "00:01:56",
+        "Post_end_time": "00:02:06"
+    },
+    "labeling": {
+        "SEN_1": "운전자의 눈은 전방을 주시하고 있고 손은 핸들을 조작하고 있다.",
+        "SEN_2": "운전자의 눈은 전방을 보고 있고 손은 핸들을 잡고 있다.",
+        "SEN_3": "주행 차량은 직진하고 있고 우측 흰색 SUV는 끼어들고 있다. 날씨는 맑고 도로포장 상태는 건조하다.",
+        "SEN_4": "주행 차량은 계속 직진 중이고 우측 회색 SUV는 급브레이크를 밟았다. 날씨는 여전히 맑으며 도로포장 상태는 말라있다. ",
+        "SEN_5": "위험구간 전에는 운전자의 눈은 전방을 주시하고 손은 핸들을 조작하고 있다. 주행 차량은 직진하고 있었으며 우측 흰색 SUV는 끼어들고 있다. 날씨는 맑고 도로 포장 상태는 건조하다. 위험구간 후에는 운전자의 눈은 전방을 보고 있고 손은 핸들을 잡고 있었으며, 주행 차량은 계속 직진 중이고 우측 회색 SUV는 급브레이크를 밟았다. 날씨는 여전히 맑으며 도로 포장 상태는 말라있다. 차는 급출발한 적이 있다."
+    }
+}

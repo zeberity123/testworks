@@ -1,0 +1,38 @@
+{
+    "dataset": {
+        "title": "2024_NIA_LAB_LAB_REAL_F_A2_ARA_NA_D_01725.JSON",
+        "date": "2024.10.22",
+        "time": "D",
+        "weather": "Rain",
+        "scenario": "Real",
+        "length": "00:02:00"
+    },
+    "Collection_info": {
+        "Car info": "Sedan",
+        "Driver_ID": "000011",
+        "Sex": "F",
+        "Age": "A2",
+        "Driving Experience": "E3",
+        "Traffic": "moderate"
+    },
+    "Load": {
+        "Load_category": "NA",
+        "Load_Geo": "cross"
+    },
+    "Risky": {
+        "Risky_type": "ARA"
+    },
+    "time": {
+        "Pre_start_time": "00:00:00",
+        "Pre_end_time": "00:00:30",
+        "Post_start_time": "00:01:41",
+        "Post_end_time": "00:02:00"
+    },
+    "labeling": {
+        "SEN_1": "운전자의 눈은 좌측을 보고 있고 손은 핸들을 조작 중이다.",
+        "SEN_2": "운전자의 눈은 좌측 창문을 보고 있고 손은 핸들을 잡고 있지 않다.",
+        "SEN_3": "주행차량은 차선 변경을 하고 있고 전방에 정차 중인 트럭이 있다. 날씨는 흐리고 도로포장 상태는 젖어있다.",
+        "SEN_4": "주행차량은 정차 중이고 앞 차도 정차 중이다. 날씨는 흐리고 도로포장 상태는 젖어있다.",
+        "SEN_5": "위험구간 전에는 운전자의 눈은 좌측을 보고 있고 손은 핸들을 조작 중이며, 주행차량은 차선 변경을 하고 있고 전방에 정차 중인 트럭이 있다. 날씨는 흐리고 도로 포장 상태는 젖어있다. 위험구간 후에는 운전자의 눈은 좌측 창문을 보고 있고 손은 핸들을 잡고 있지 않으며, 주행차량은 정차 중이고 앞 차도 정차 중이다. 날씨는 여전히 흐리고 도로 포장 상태는 젖었다. 차의 속도는 주행하다 감속했다."
+    }
+}

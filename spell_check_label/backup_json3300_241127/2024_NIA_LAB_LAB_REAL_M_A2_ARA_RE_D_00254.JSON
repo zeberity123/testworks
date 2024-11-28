@@ -1,0 +1,38 @@
+{
+    "dataset": {
+        "title": "2024_NIA_LAB_LAB_REAL_M_A2_ARA_RE_D_00254.JSON",
+        "date": "2024.09.20",
+        "time": "D",
+        "weather": "Rain",
+        "scenario": "Real",
+        "length": "00:02:00"
+    },
+    "Collection_info": {
+        "Car info": "Sedan",
+        "Driver_ID": "000001",
+        "Sex": "M",
+        "Age": "A2",
+        "Driving Experience": "E3",
+        "Traffic": "moderate"
+    },
+    "Load": {
+        "Load_category": "RE",
+        "Load_Geo": "single"
+    },
+    "Risky": {
+        "Risky_type": "ARA"
+    },
+    "time": {
+        "Pre_start_time": "00:00:00",
+        "Pre_end_time": "00:00:33",
+        "Post_start_time": "00:01:36",
+        "Post_end_time": "00:02:21"
+    },
+    "labeling": {
+        "SEN_1": "운전자의 눈은 정면을 보고 있고 손은 얼굴을 만지고 있다.",
+        "SEN_2": "운전자의 눈은 하단을 보고 있고 손은 핸들을 조작하고 있다.",
+        "SEN_3": "주행 차량은 직진하고 있고 전방에 대형 트럭도 직진하고 있다. 날씨는 비가 오고 도로 포장 상태는 젖어있다.",
+        "SEN_4": "주행 차량은 직진하고 있고 앞 차도 직진하고 있다. 날씨는 비가 오고 도로 포장 상태는 젖어있다.",
+        "SEN_5": "위험구간 전 운전자의 눈은 정면을 보면서, 손은 얼굴을 만지고 있었으며, 주행 차량은 직진 중이고 전방에 있는 대형 트럭도 직진하고 있었다. 날씨는 비가 오고 도로 포장 상태는 젖어있다. 위험구간 후 운전자의 눈은 하단을 보며, 손은 핸들을 조작하여 직진하고 있고, 주행 차량의 앞 차도 직진하고 있었다. 날씨는 계속 비가 내리고 도로 포장 상태는 젖어있다. 차의 속도는 정속 주행 중이다."
+    }
+}

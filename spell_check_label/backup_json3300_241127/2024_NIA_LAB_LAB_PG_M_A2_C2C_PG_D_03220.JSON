@@ -1,0 +1,38 @@
+{
+    "dataset": {
+        "title": "2024_NIA_LAB_LAB_PG_M_A2_C2C_PG_D_03220.JSON",
+        "date": "2024.11.04",
+        "time": "D",
+        "weather": "Sunny",
+        "scenario": "Test",
+        "length": "00:01:49"
+    },
+    "Collection_info": {
+        "Car info": "Sedan",
+        "Driver_ID": "000012",
+        "Sex": "M",
+        "Age": "A2",
+        "Driving Experience": "E3",
+        "Traffic": "other"
+    },
+    "Load": {
+        "Load_category": "PG",
+        "Load_Geo": "cross"
+    },
+    "Risky": {
+        "Risky_type": "C2C"
+    },
+    "time": {
+        "Pre_start_time": "00:00:00",
+        "Pre_end_time": "00:00:36",
+        "Post_start_time": "00:01:41",
+        "Post_end_time": "00:01:49"
+    },
+    "labeling": {
+        "SEN_1": "운전자의 눈은 우측 하단을 보고 있고 손은 핸들을 잡고 있다.",
+        "SEN_2": "운전자의 눈은 정면을 보고 있고 손은 보이지 않는다.",
+        "SEN_3": "주행 차량은 직진하고 있고 앞에 다른 차량은 없다. 날씨는 맑고 도로포장 상태는 건조하다.",
+        "SEN_4": "주행 차량은 차선을 변경하고 전방에 낙하물이 떨어져 있다. 여전히 날씨는 맑고 도로포장 상태는 건조하다.",
+        "SEN_5": "위험구간 전에는 운전자의 눈은 우측 하단을 보고 있고 손은 핸들을 잡고 있다. 주행 차량은 직진하고 있고 앞에 다른 차량은 없다. 날씨는 맑고 도로 포장 상태는 건조하다. 위험구간 후에는 운전자의 눈은 정면을 보고 있고 손은 보이지 않는다. 주행 차량은 차선을 변경하고 전방에 낙하물이 떨어져 있다. 날씨는 맑고 도로 포장 상태는 건조하다. 차는 급정지한 적이 있다."
+    }
+}

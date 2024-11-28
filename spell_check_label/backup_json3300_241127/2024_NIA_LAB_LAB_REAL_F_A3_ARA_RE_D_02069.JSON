@@ -1,0 +1,38 @@
+{
+    "dataset": {
+        "title": "2024_NIA_LAB_LAB_REAL_F_A3_ARA_RE_D_02069.JSON",
+        "date": "2024.10.24",
+        "time": "D",
+        "weather": "Sunny",
+        "scenario": "Real",
+        "length": "00:01:30"
+    },
+    "Collection_info": {
+        "Car info": "Sedan",
+        "Driver_ID": "000013",
+        "Sex": "F",
+        "Age": "A3",
+        "Driving Experience": "E3",
+        "Traffic": "moderate"
+    },
+    "Load": {
+        "Load_category": "RE",
+        "Load_Geo": "cross"
+    },
+    "Risky": {
+        "Risky_type": "ARA"
+    },
+    "time": {
+        "Pre_start_time": "00:00:00",
+        "Pre_end_time": "00:00:22",
+        "Post_start_time": "00:01:22",
+        "Post_end_time": "00:01:30"
+    },
+    "labeling": {
+        "SEN_1": "운전자의 눈은 좌측을 주시하고 있고 손은 핸들을 조작하고 있다.",
+        "SEN_2": "운전자의 눈은 상단을 보고 있고 손은 핸들을 잡고 있다.",
+        "SEN_3": "주행 차량은 정지하고 있고 앞 차량은 정지 중이다. 날씨는 맑고 도로포장 상태는 건조하다.",
+        "SEN_4": "주행 차량은 직진하고 있고 반대편 차선 택시는 직진 중이다. 날씨는 여전히 맑으며 도로포장 상태는 말라 있다.",
+        "SEN_5": "위험구간 전에는 운전자의 눈은 좌측을 주시하고 손은 핸들을 조작하고 있다. 주행 차량은 정지하고 있었으며 앞 차량은 정지 중이다. 날씨는 맑고 도로 포장 상태는 건조하다. 위험구간 후에는 운전자의 눈은 상단을 보고 있고 손은 핸들을 잡고 있었으며, 주행 차량은 직진하고 있고 반대편 차선 택시는 직진 중이다. 날씨는 여전히 맑으며 도로 포장 상태는 말라 있다. 차의 속도는 정지해 있다가 가속했다."
+    }
+}

@@ -1,0 +1,38 @@
+{
+    "dataset": {
+        "title": "2024_NIA_LAB_LAB_REAL_M_A1_ARA_RE_D_01489.JSON",
+        "date": "2024.10.16",
+        "time": "D",
+        "weather": "Sunny",
+        "scenario": "Real",
+        "length": "00:02:00"
+    },
+    "Collection_info": {
+        "Car info": "Van",
+        "Driver_ID": "000004",
+        "Sex": "M",
+        "Age": "A1",
+        "Driving Experience": "E1",
+        "Traffic": "moderate"
+    },
+    "Load": {
+        "Load_category": "RE",
+        "Load_Geo": "single"
+    },
+    "Risky": {
+        "Risky_type": "ARA"
+    },
+    "time": {
+        "Pre_start_time": "00:00:00",
+        "Pre_end_time": "00:00:38",
+        "Post_start_time": "00:01:15",
+        "Post_end_time": "00:02:00"
+    },
+    "labeling": {
+        "SEN_1": "운전자의 눈은 좌측을 보고 있고 손은 핸들을 조작하고 있다.",
+        "SEN_2": "운전자의 눈은 정면을 보고 있고 손은 얼굴을 만지고 있다.",
+        "SEN_3": "주행 차량은 직진하고 있고 앞차는 없다. 날씨는 맑고 도로포장 상태는 건조하다.",
+        "SEN_4": "주행 차량은 직진하고 있고 주변에 다른 차량은 보이지 않는다. 날씨는 맑고 도로포장은 건조하다.",
+        "SEN_5": "위험구간 전에는 운전자의 눈은 좌측을 보고 있고 손은 핸들을 조작하고 있다. 주행 차량은 직진하고 있고 앞차는 없다. 날씨는 맑고 도로 포장 상태는 건조하다. 위험구간 후에는 운전자의 눈은 정면을 보고 있고 손은 얼굴을 만지고 있다. 주행 차량은 직진하고 있고 주변에 다른 차량은 보이지 않는다. 날씨는 맑고 도로 포장은 건조하다. 차의 속도는 정속 주행 중이다."
+    }
+}

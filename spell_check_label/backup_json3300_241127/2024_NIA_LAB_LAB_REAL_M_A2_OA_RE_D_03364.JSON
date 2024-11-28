@@ -1,0 +1,38 @@
+{
+    "dataset": {
+        "title": "2024_NIA_LAB_LAB_REAL_M_A2_OA_RE_D_03364.JSON",
+        "date": "2024.11.12",
+        "time": "D",
+        "weather": "Sunny",
+        "scenario": "Real",
+        "length": "00:01:30"
+    },
+    "Collection_info": {
+        "Car info": "Sedan",
+        "Driver_ID": "000001",
+        "Sex": "M",
+        "Age": "A2",
+        "Driving Experience": "E3",
+        "Traffic": "moderate"
+    },
+    "Load": {
+        "Load_category": "RE",
+        "Load_Geo": "other"
+    },
+    "Risky": {
+        "Risky_type": "OA"
+    },
+    "time": {
+        "Pre_start_time": "00:00:00",
+        "Pre_end_time": "00:00:36",
+        "Post_start_time": "00:01:14",
+        "Post_end_time": "00:01:30"
+    },
+    "labeling": {
+        "SEN_1": "운전자의 눈은 정면을 보고 있고 손은 이마를 만지고 있다.",
+        "SEN_2": "운전자의 눈은 좌측을 보고 있고 손은 콘솔박스 위에 있다.",
+        "SEN_3": "주행 차량은 직진하고 있고 앞 차선에는 차량이 없다. 날씨가 맑고 도로포장 상태는 건조하다.",
+        "SEN_4": "주행 차량은 우회전하고 있고 앞차는 직진 중이다. 날씨가 맑고 도로포장 상태는 건조하다.",
+        "SEN_5": "위험구간 전에는 운전자의 눈은 정면을 보고 있고 손은 이마를 만지고 있다. 주행 차량은 직진하고 있고 앞 차선에는 차량이 없다. 날씨는 맑고 도로 포장 상태는 건조하다. 위험구간 후에는 운전자의 눈은 좌측을 보고 있고 손은 콘솔박스 위에 있다. 주행 차량은 우회전하고 있고 앞차는 직진 중이다. 날씨는 여전히 맑으며 도로 포장 상태도 건조한 상태이다. 차는 감속했다."
+    }
+}

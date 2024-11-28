@@ -1,0 +1,38 @@
+{
+    "dataset": {
+        "title": "2024_NIA_LAB_LAB_REAL_M_A1_AFA_RE_D_00762.JSON",
+        "date": "2024.09.25",
+        "time": "D",
+        "weather": "Cloud",
+        "scenario": "Real",
+        "length": "00:02:00"
+    },
+    "Collection_info": {
+        "Car info": "Sedan",
+        "Driver_ID": "000004",
+        "Sex": "M",
+        "Age": "A1",
+        "Driving Experience": "E1",
+        "Traffic": "moderate"
+    },
+    "Load": {
+        "Load_category": "RE",
+        "Load_Geo": "cross"
+    },
+    "Risky": {
+        "Risky_type": "AFA"
+    },
+    "time": {
+        "Pre_start_time": "00:00:00",
+        "Pre_end_time": "00:00:36",
+        "Post_start_time": "00:01:32",
+        "Post_end_time": "00:02:00"
+    },
+    "labeling": {
+        "SEN_1": "운전자의 눈은 하단을 보고 있고 손은 핸들을 조작하고 있다.",
+        "SEN_2": "운전자의 눈은 하단을 보고 있고 손은 음료 컵을 들고 있다.",
+        "SEN_3": "주행 차량은 직진이고 앞 차량은 없으며 1차선의 버스는 직진이다. 날씨는 구름이 많고 도로 포장 상태는 건조하다.",
+        "SEN_4": "주행 차량은 직진이고 앞 차량도 직진이다. 날씨는 구름이 많고 도로 포장 상태는 건조하다.",
+        "SEN_5": "위험구간 전에는 운전자의 눈은 하단을 보고 있고 손은 핸들을 조작하고 있으며, 주행 차량은 직진이고 앞 차량은 없으며 1차선 버스는 직진이다. 날씨는 구름이 많고 도로 포장 상태는 건조하다. 위험구간 후에는 운전자의 눈은 하단을 보고 있고 손은 음료 컵을 들고 있으며, 주행 차량은 직진이고 앞 차량도 직진이다. 날씨는 여전히 구름이 많고 도로 포장 상태가 건조하다. 차의 속도는 정속 주행 중이다."
+    }
+}
