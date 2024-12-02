@@ -1,28 +1,28 @@
-
 import os
 import json
-import cv2
 
-json_folder_root = 'backup_json3300_241127'
-# json_folder_root = 'test_json'
+# 라벨링 json 모여있는 폴더
+json_folder_root = 'TTA'
 json_file_list = os.listdir(json_folder_root)
-# json_file_list = ['2024_NIA_LAB_LAB_PG_F_A1_C2C_PG_D_02820.JSON']
 
 errors_in_jsons = []
 
 def check_spelling_errors(sentence):
     spelling_errors = []
-    # if '  ' in sentence:
-    #     pre_post_sp = sentence.split('  ')
-    #     pre_post = pre_post_sp[0][-1] + '  ' + pre_post_sp[1][:1]
-    #     # print(pre_post)
-    #     error_at = f'{sentence} ||{pre_post}'
-    #     spelling_errors.append(error_at)
-    # sentence = sentence.strip()
+
+    # 띄어쓰기 2개 이상
+    if '  ' in sentence:
+        pre_post_sp = sentence.split('  ')
+        pre_post = pre_post_sp[0][-1] + '  ' + pre_post_sp[1][:1]
+        error_at = f'{sentence}' + "'" + f' ||{pre_post}'
+        spelling_errors.append(error_at)
+
+    # 문장 앞 띄어쓰기
     if sentence[0] == ' ':
         error_at = f'{sentence}' + "'" + f' || Leading space'
         spelling_errors.append(error_at)
     
+    # 문장 뒤 띄어쓰기
     if sentence[-1] == ' ':
         error_at = f'{sentence}' + "'" + f' || Trailing space'
         spelling_errors.append(error_at)
@@ -33,12 +33,9 @@ def check_spelling_errors(sentence):
 cnt = 0
 for file_name in json_file_list:
     cnt += 1
-    e1 = cv2.getTickCount()
     with open(f'{json_folder_root}/{file_name}', 'r', encoding='UTF-8') as f:
-    # with open(f'{file_name}', 'r') as f:
         label_data = json.load(f)
         keys = label_data['labeling'].keys()
-        # print(keys)
         key_cnt = 0
         error_words_in_json = []
         for key in keys:
@@ -50,10 +47,8 @@ for file_name in json_file_list:
                 print(file_name, error_words_in_json)
         
         errors_in_jsons.append([file_name, error_words_in_json])
-    e2 = cv2.getTickCount()
-    Total_time = (e2 - e1)/ cv2.getTickFrequency()
-    # print(f'Total time taken: {Total_time} seconds')
-    print(f'Total number of parsed images(pairs): {cnt}/{len(json_file_list)} pairs')
+
+    print(f'Scanning...: {cnt}/{len(json_file_list)}')
 
 print('------------------')
 
